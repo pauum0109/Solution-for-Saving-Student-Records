@@ -12,33 +12,23 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class AdminHomeController {
+public class AdminStudentController {
 
     @FXML
-    private Button btn_Course;
+    private Button btn_ADD;
 
     @FXML
-    private Button btn_Professor;
-
-    @FXML
-    private Button btn_Student;
-
-    @FXML
-    private Button btn_info;
+    private Button btn_REMOVE;
 
     @FXML
     void handleButtonClicks(ActionEvent event) {
-        if(event.getSource() == btn_Professor){
-            loadStage("AdminProfessor.fxml");
-        }else if(event.getSource() == btn_Student){
-            loadStage("AdminStudent.fxml");
-        }else if(event.getSource() == btn_info){
-            loadStage("AdminInfo.fxml");
-        }else if(event.getSource() == btn_Course){
-            loadStage("AdminCourse.fxml");
+        if(event.getSource() == btn_ADD) {
+            loadStage("AdminAddStudent.fxml");
+        }
+        else if(event.getSource() == btn_REMOVE) {
+            loadStage("AdminRemoveStudent.fxml");
         }
     }
-
     private void loadStage(String fxml) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml)));
@@ -50,5 +40,4 @@ public class AdminHomeController {
             throw new RuntimeException(e);
         }
     }
-
 }

@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="943.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studentmanagement.Controller.AdminHomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="943.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studentmanagement.Controller.AdminCourseController">
    <children>
       <Pane prefHeight="173.0" prefWidth="980.0" style="-fx-background-color: #2D75E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="130.0" layoutY="44.0" text="Admin" textFill="WHITE">
+            <Label layoutX="130.0" layoutY="44.0" text="Course" textFill="WHITE">
                <font>
                   <Font size="48.0" />
                </font>
@@ -38,24 +38,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btn_info" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="181.0" prefWidth="242.0" stylesheets="@../styling/DashboardCSS/fullpackstyling.css" text="Infomation">
+            <Button fx:id="btn_ADD" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="181.0" prefWidth="242.0" stylesheets="@../styling/DashboardCSS/fullpackstyling.css" text="Add Course">
                <graphic>
-                  <FontAwesomeIconView fill="#2d75e8" glyphName="HOME" size="50" />
+                  <FontAwesomeIconView fill="#2d75e8" glyphName="PLUS" size="50" />
                </graphic>
             </Button>
-            <Button fx:id="btn_Student" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="181.0" prefWidth="242.0" stylesheets="@../styling/DashboardCSS/fullpackstyling.css" text="Student" GridPane.columnIndex="1">
+            <Button fx:id="btn_REMOVE" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="181.0" prefWidth="242.0" stylesheets="@../styling/DashboardCSS/fullpackstyling.css" text="Remove Course" GridPane.columnIndex="1">
                <graphic>
-                  <FontAwesomeIconView fill="#2d75e8" glyphName="GROUP" size="50" />
-               </graphic>
-            </Button>
-            <Button fx:id="btn_Professor" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="181.0" prefWidth="242.0" stylesheets="@../styling/DashboardCSS/fullpackstyling.css" text="Professor" GridPane.columnIndex="2">
-               <graphic>
-                  <FontAwesomeIconView fill="#2d75e8" glyphName="USER" size="50" />
-               </graphic>
-            </Button>
-            <Button fx:id="btn_Course" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="181.0" prefWidth="242.0" stylesheets="@../styling/DashboardCSS/fullpackstyling.css" text="Course" GridPane.rowIndex="1">
-               <graphic>
-                  <FontAwesomeIconView fill="#2d75e8" glyphName="BOOK" size="50" />
+                  <FontAwesomeIconView fill="#2d75e8" glyphName="MINUS" size="50" />
                </graphic>
             </Button>
          </children>

@@ -65,6 +65,10 @@ public class LoginController implements Initializable {
             else if(logIn().equals("professor")){
                 changeScene(event, "ProfessorHome.fxml");
             }
+            else if(logIn().equals("admin")){
+                changeScene(event, "AdminHome.fxml");
+            }
+            
         }
 
     }
@@ -162,7 +166,38 @@ public class LoginController implements Initializable {
                             System.err.println(ex.getMessage());
                             status = "Exception";
                         }
-
+                    }
+                    else if(resultSet.getString("userRole").equals("admin")){
+                        String sql2 = "SELECT * FROM admin Where admin.userID = ?;";
+                        try{
+                            preparedStatement = con.prepareStatement(sql2);
+                            preparedStatement.setString(1, resultSet.getString("userID"));
+                            resultSet = preparedStatement.executeQuery();
+                            if(!resultSet.next()){
+                                setLblError(Color.TOMATO, "Enter Correct Email/Password");
+                                status = "Error";
+                            }
+                            else{
+                                status = "admin";
+                                org.studentmanagement.Entity.Admin admin = org.studentmanagement.Entity.Admin.getInstance();
+                                admin.setAdminID(resultSet.getString("adminID"));
+                                admin.setAdminFirstName(resultSet.getString("adminFirstName"));
+                                admin.setAdminLastName(resultSet.getString("adminLastName"));
+                                admin.setAdminDOB(resultSet.getString("adminDOB"));
+                                admin.setAdminGender(resultSet.getString("adminGender"));
+                                admin.setAdminAddress(resultSet.getString("adminAddress"));
+                                admin.setAdminPhone(resultSet.getString("adminPhone"));
+                                admin.setAdminEmail(resultSet.getString("adminEmail"));
+                            }
+                        }
+                        catch (SQLException ex) {
+                            System.err.println(ex.getMessage());
+                            status = "Exception";
+                        }
+                    }
+                    else{
+                        setLblError(Color.TOMATO, "Enter Correct Email/Password");
+                        status = "Error";
                     }
 
                 }
