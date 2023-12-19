@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1102.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studentmanagement.Controller.ProfessorStudentController">
+   <children>
+      <Pane prefHeight="139.0" prefWidth="1102.0" style="-fx-background-color: #2D75E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="73.0" layoutY="30.0" text="Student" textFill="WHITE">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="79.0" layoutY="91.0" text="School Management " textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="StudentData" layoutX="18.0" layoutY="200.0" prefHeight="349.0" prefWidth="1066.0" stylesheets="@../styling/DashboardCSS/fullpackstyling.css" AnchorPane.bottomAnchor="14.399999999999977" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.800000000000182" AnchorPane.topAnchor="200.0">
+        <columns>
+          <TableColumn fx:id="studentID" prefWidth="75.0" text="Student ID" />
+          <TableColumn fx:id="studentName" prefWidth="75.0" text="Student Name" />
+            <TableColumn fx:id="studentScore" prefWidth="75.0" text="Student Score" />
+            <TableColumn fx:id="Edit" prefWidth="75.0" text="Edit" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <ComboBox fx:id="CourseList" layoutX="210.0" layoutY="160.0" prefHeight="26.0" prefWidth="511.0" />
+      <Label layoutX="18.0" layoutY="159.0" text="Choose Course Name: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_CourseFind" layoutX="732.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleFindBtn" prefHeight="26.0" prefWidth="63.0" stylesheets="@../styling/LoginCSS/fullpackstyling.css" text="Find" />
+   </children>
+</AnchorPane>

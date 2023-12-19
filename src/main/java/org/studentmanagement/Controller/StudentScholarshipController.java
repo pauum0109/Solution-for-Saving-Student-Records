@@ -1,12 +1,13 @@
-package org.studentmanagement;
+package org.studentmanagement.Controller;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.studentmanagement.models.Student;
-import org.studentmanagement.utils.ConnectionUtil;
+import org.studentmanagement.Entity.Student;
+import org.studentmanagement.Model.ScholarshipModel;
+import org.studentmanagement.Utils.ConnectionUtil;
 
 
 import java.net.URL;
@@ -51,7 +52,7 @@ public class StudentScholarshipController implements Initializable {
                 scholarshipIds.add(resultSet.getLong("scholarshipID"));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return scholarshipIds;
@@ -73,7 +74,7 @@ public class StudentScholarshipController implements Initializable {
                 }
             }
         } catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -81,11 +82,11 @@ public class StudentScholarshipController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<Long> scholarshipIds = getScholarshipIds();
         getScholarshipData(scholarshipIds);
-        scholarshipID.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("scholarshipId"));
-        scholarshipName.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("scholarshipName"));
-        scholarshipDescription.setCellValueFactory(new javafx.scene.control.cell.PropertyValueFactory<>("scholarshipDescription"));
+        scholarshipID.setCellValueFactory(cellData -> cellData.getValue().getScholarshipId().asObject());
+        scholarshipName.setCellValueFactory(cellData -> cellData.getValue().getScholarshipName());
+        scholarshipDescription.setCellValueFactory(cellData -> cellData.getValue().getScholarshipDescription());
         scholarshipData.setItems(scholarshipModels);
     }
 
-    private ObservableList<ScholarshipModel> scholarshipModels = javafx.collections.FXCollections.observableArrayList();
+    private final ObservableList<ScholarshipModel> scholarshipModels = javafx.collections.FXCollections.observableArrayList();
 }

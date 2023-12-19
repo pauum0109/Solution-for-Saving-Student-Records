@@ -1,4 +1,4 @@
-package org.studentmanagement;
+package org.studentmanagement.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,10 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import org.studentmanagement.models.Student;
-import org.studentmanagement.utils.ConnectionUtil;
-
+import org.studentmanagement.Entity.Student;
+import org.studentmanagement.Model.CourseModel;
+import org.studentmanagement.Utils.ConnectionUtil;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -20,37 +19,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class StudentCoursesController implements Initializable {
+public class StudentCourseController implements Initializable {
 
     @FXML
-    private TableColumn<CoursesModel, String> courseCredit;
+    private TableColumn<CourseModel, String> courseCredit;
 
     @FXML
-    private TableView<CoursesModel> courseData;
+    private TableView<CourseModel> courseData;
 
     @FXML
-    private TableColumn<CoursesModel, String> courseDay;
+    private TableColumn<CourseModel, String> courseDay;
 
     @FXML
-    private TableColumn<CoursesModel, String> courseDescription;
+    private TableColumn<CourseModel, String> courseDescription;
 
     @FXML
-    private TableColumn<CoursesModel, Integer> courseID;
+    private TableColumn<CourseModel, Integer> courseID;
 
     @FXML
-    private TableColumn<CoursesModel, String> courseName;
+    private TableColumn<CourseModel, String> courseName;
 
     @FXML
-    private TableColumn<CoursesModel, String> courseRoom;
+    private TableColumn<CourseModel, String> courseRoom;
 
     @FXML
-    private TableColumn<CoursesModel, String> courseTime;
+    private TableColumn<CourseModel, String> courseTime;
 
     Connection con;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
-    public StudentCoursesController(){
+    public StudentCourseController(){
         con = ConnectionUtil.conDB();
     }
 
@@ -69,7 +68,7 @@ public class StudentCoursesController implements Initializable {
             }
         }
         catch (SQLException sqlException){
-            sqlException.printStackTrace();
+            throw new RuntimeException(sqlException);
         }
 
         return classId;
@@ -91,13 +90,13 @@ public class StudentCoursesController implements Initializable {
             }
         }
         catch (SQLException sqlException){
-            sqlException.printStackTrace();
+            throw new RuntimeException(sqlException);
         }
 
         return courseId;
     }
 
-    private void getCourse(List<Long> courseId) {
+    private void getCourseData(List<Long> courseId) {
         String sql = "SELECT * FROM course WHERE courseID = ?";
         try{
             preparedStatement = con.prepareStatement(sql);
@@ -106,7 +105,7 @@ public class StudentCoursesController implements Initializable {
                 resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()){
                     assert false;
-                    coursesModelObservableList.add(new CoursesModel(
+                    coursesModelObservableList.add(new CourseModel(
                             resultSet.getInt("courseID"),
                             resultSet.getString("courseName"),
                             resultSet.getString("courseDescription"),
@@ -119,7 +118,7 @@ public class StudentCoursesController implements Initializable {
             }
         }
         catch (SQLException sqlException){
-            sqlException.printStackTrace();
+            throw new RuntimeException(sqlException);
         }
     }
 
@@ -127,18 +126,18 @@ public class StudentCoursesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         List<Long> classId = getClassId();
         List<Long> courseId = getCourseId(classId);
-        getCourse(courseId);
+        getCourseData(courseId);
 
-        courseID.setCellValueFactory(new PropertyValueFactory<>("CourseID"));
-        courseName.setCellValueFactory(new PropertyValueFactory<>("CourseName"));
-        courseDescription.setCellValueFactory(new PropertyValueFactory<>("CourseDescription"));
-        courseCredit.setCellValueFactory(new PropertyValueFactory<>("CourseCredit"));
-        courseDay.setCellValueFactory(new PropertyValueFactory<>("CourseDay"));
-        courseTime.setCellValueFactory(new PropertyValueFactory<>("CourseTime"));
-        courseRoom.setCellValueFactory(new PropertyValueFactory<>("CourseRoom"));
+        courseID.setCellValueFactory(cellData -> cellData.getValue().getCourseID().asObject());
+        courseName.setCellValueFactory(cellData -> cellData.getValue().getCourseName());
+        courseDescription.setCellValueFactory(cellData -> cellData.getValue().getCourseDescription());
+        courseCredit.setCellValueFactory(cellData -> cellData.getValue().getCourseCredit());
+        courseDay.setCellValueFactory(cellData -> cellData.getValue().getCourseDay());
+        courseTime.setCellValueFactory(cellData -> cellData.getValue().getCourseTime());
+        courseRoom.setCellValueFactory(cellData -> cellData.getValue().getCourseRoom());
         courseData.setItems(coursesModelObservableList);
     }
 
-    private ObservableList<CoursesModel> coursesModelObservableList = FXCollections.observableArrayList();
+    private final ObservableList<CourseModel> coursesModelObservableList = FXCollections.observableArrayList();
 
 }

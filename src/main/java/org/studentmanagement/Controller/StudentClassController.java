@@ -1,4 +1,4 @@
-package org.studentmanagement;
+package org.studentmanagement.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,10 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import org.studentmanagement.models.Student;
-import org.studentmanagement.utils.ConnectionUtil;
-
+import org.studentmanagement.Entity.Student;
+import org.studentmanagement.Model.ClassModel;
+import org.studentmanagement.Utils.ConnectionUtil;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class StudentClassController implements Initializable{
+public class StudentClassController implements Initializable {
 
     @FXML
     private TableColumn<ClassModel, Integer> availableSlots;
@@ -50,8 +49,7 @@ public class StudentClassController implements Initializable{
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
-    public StudentClassController()
-    {
+    public StudentClassController() {
         con = ConnectionUtil.conDB();
     }
 
@@ -60,17 +58,16 @@ public class StudentClassController implements Initializable{
         Student student = Student.getInstance();
 
         String sql = "SELECT classID FROM enrollment WHERE studentID = ?";
-        try{
+        try {
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, student.getStudentID());
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 assert false;
                 classId.add(resultSet.getLong("classID"));
             }
-        }
-        catch (SQLException sqlException){
-            sqlException.printStackTrace();
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
         }
 
         return classId;
@@ -78,12 +75,12 @@ public class StudentClassController implements Initializable{
 
     private void getClassInfo(List<Long> classId) {
         String sql = "SELECT * FROM class WHERE classID = ?";
-        try{
+        try {
             preparedStatement = con.prepareStatement(sql);
-            for (Long id : classId){
+            for (Long id : classId) {
                 preparedStatement.setLong(1, id);
                 resultSet = preparedStatement.executeQuery();
-                while (resultSet.next()){
+                while (resultSet.next()) {
                     Integer classID = resultSet.getInt("classID");
                     int courseID = resultSet.getInt("courseID");
                     int professorID = resultSet.getInt("professorID");
@@ -109,9 +106,8 @@ public class StudentClassController implements Initializable{
                     classModelObservableList.add(new ClassModel(classID, courseName, professorName, startDate, endDate, slots, availableSlots));
                 }
             }
-        }
-        catch (SQLException sqlException){
-            sqlException.printStackTrace();
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
         }
     }
 
@@ -120,16 +116,15 @@ public class StudentClassController implements Initializable{
         List<Long> classId = getClassId();
         getClassInfo(classId);
 
-        classID.setCellValueFactory(new PropertyValueFactory<>("classID"));
-        courseName.setCellValueFactory(new PropertyValueFactory<>("CourseName"));
-        professorName.setCellValueFactory(new PropertyValueFactory<>("ProfessorName"));
-        startDate.setCellValueFactory(new PropertyValueFactory<>("StartDate"));
-        endDate.setCellValueFactory(new PropertyValueFactory<>("EndDate"));
-        slots.setCellValueFactory(new PropertyValueFactory<>("Slots"));
-        availableSlots.setCellValueFactory(new PropertyValueFactory<>("AvailableSlots"));
+        classID.setCellValueFactory(cellData -> cellData.getValue().getClassID().asObject());
+        courseName.setCellValueFactory(cellData -> cellData.getValue().getCourseName());
+        professorName.setCellValueFactory(cellData -> cellData.getValue().getProfessorName());
+        startDate.setCellValueFactory(cellData -> cellData.getValue().getStartDate());
+        endDate.setCellValueFactory(cellData -> cellData.getValue().getEndDate());
+        slots.setCellValueFactory(cellData -> cellData.getValue().getSlots().asObject());
+        availableSlots.setCellValueFactory(cellData -> cellData.getValue().getAvailableSlots().asObject());
         classData.setItems(classModelObservableList);
     }
 
-
-    private ObservableList<ClassModel>classModelObservableList = FXCollections.observableArrayList();
+    private final ObservableList<ClassModel> classModelObservableList = FXCollections.observableArrayList();
 }

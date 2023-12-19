@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studentmanagement.Controller.StudentInfoController">
+   <children>
+      <Pane layoutY="-2.0" prefHeight="139.0" prefWidth="950.0" style="-fx-background-color: #2D75E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="-2.0">
+         <children>
+            <Label layoutX="73.0" layoutY="30.0" text="Information" textFill="WHITE">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="79.0" layoutY="91.0" text="School Management " textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutY="138.0" prefHeight="471.0" prefWidth="950.0">
+         <children>
+            <Label layoutX="86.0" layoutY="56.0" prefHeight="40.0" prefWidth="130.0" text="ID:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="96.0" prefHeight="40.0" prefWidth="130.0" text="First Name:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="136.0" prefHeight="40.0" prefWidth="130.0" text="Last Name:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="176.0" prefHeight="40.0" prefWidth="130.0" text="Email: ">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="216.0" prefHeight="40.0" prefWidth="130.0" text="Phone:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="256.0" prefHeight="40.0" prefWidth="130.0" text="Address:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="296.0" prefHeight="40.0" prefWidth="130.0" text="Date of birth:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="336.0" prefHeight="40.0" prefWidth="130.0" text="Gender:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="86.0" layoutY="376.0" prefHeight="40.0" prefWidth="130.0" text="Major:">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentID" layoutX="246.0" layoutY="56.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentFirstName" layoutX="246.0" layoutY="96.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentLastName" layoutX="246.0" layoutY="136.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentEmail" layoutX="246.0" layoutY="176.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentPhone" layoutX="246.0" layoutY="216.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentAddress" layoutX="246.0" layoutY="256.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentDOB" layoutX="246.0" layoutY="296.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentGender" layoutX="246.0" layoutY="336.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="studentMajor" layoutX="246.0" layoutY="376.0" prefHeight="40.0" prefWidth="300.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

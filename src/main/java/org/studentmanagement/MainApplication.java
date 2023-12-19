@@ -1,45 +1,33 @@
 package org.studentmanagement;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
 public class MainApplication extends Application {
-    //define your offsets here
     private double xOffset = 0;
     private double yOffset = 0;
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
-//we gonna remove the borderless thingie.
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Controller/Login.fxml")));
         stage.initStyle(StageStyle.DECORATED);
         stage.setMaximized(false);
 
         //grab your root here
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
         });
 
-        //sorry about that - Windows defender issue.
-        //move around here
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
         });
 
         Scene scene = new Scene(root);
@@ -47,9 +35,7 @@ public class MainApplication extends Application {
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
         launch(args);
     }

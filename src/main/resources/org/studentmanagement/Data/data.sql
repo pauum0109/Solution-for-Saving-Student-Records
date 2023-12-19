@@ -198,6 +198,7 @@ CREATE TABLE if not exists enrollment(
     enrollmentID int(11) NOT NULL,
     studentID int(11) NOT NULL,
     classID int(11) NOT NULL,
+    score int(11) NOT NULL,
     PRIMARY KEY (enrollmentID),
     FOREIGN KEY (studentID) REFERENCES student (studentID),
     FOREIGN KEY (classID) REFERENCES class (classID)
@@ -205,21 +206,21 @@ CREATE TABLE if not exists enrollment(
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
-INSERT INTO enrollment (enrollmentID, studentID, classID)
+INSERT INTO enrollment (enrollmentID, studentID, classID, score)
 VALUES
-    (1, 1, 1),
-    (2, 2, 2),
-    (3, 3, 3),
-    (4, 4, 4),
-    (5, 5, 5),
-    (6, 6, 6),
-    (7, 7, 7),
-    (8, 8, 8),
-    (9, 9, 9),
-    (10, 10, 10),
-    (11, 11, 11),
-    (12, 12, 12),
-    (13, 13, 13);
+    (1, 1, 1, 100),
+    (2, 2, 2, 45),
+    (3, 3, 3, 84),
+    (4, 4, 4, 63),
+    (5, 5, 5, 78),
+    (6, 6, 6, 84),
+    (7, 7, 7, 12),
+    (8, 8, 8, 69),
+    (9, 9, 9, 81),
+    (10, 10, 10, 88),
+    (11, 11, 11, 95),
+    (12, 12, 12, 61),
+    (13, 13, 13, 78);
 
 
 CREATE TABLE if not exists scholarship
@@ -305,3 +306,23 @@ VALUES (1, 1000, '2023-01-15', 1, 'Paid', 1),
        (11, 1000, '2023-01-15', 11, 'Paid', 1),
        (12, 1000, '2023-01-15', 12, 'Paid', 1),
        (13, 1000, '2023-01-15', 13, 'Paid', 1);
+
+CREATE TABLE if not exists admin (
+    adminID int(11) NOT NULL,
+    userID int(11) NOT NULL,
+    adminFirstName varchar(255) NOT NULL,
+    adminLastName varchar(255) NOT NULL,
+    adminEmail varchar(255) NOT NULL,
+    adminPhone varchar(255) NOT NULL,
+    adminAddress varchar(255) NOT NULL,
+    adminDOB varchar(255) NOT NULL,
+    adminGender varchar(255) NOT NULL,
+    PRIMARY KEY (adminID),
+    FOREIGN KEY (userID) REFERENCES user (userID)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
+
+INSERT INTO admin (adminID, userID, adminFirstName, adminLastName, adminEmail, adminPhone, adminAddress, adminDOB, adminGender)
+VALUES
+    (1, 1, 'John', 'Doe', 'john.doe@example.com', '123-456-7890', '123 Main St', '1990-01-01', 'Male');

@@ -1,10 +1,5 @@
-package org.studentmanagement;
+package org.studentmanagement.Controller;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,8 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.studentmanagement.models.Student;
-import org.studentmanagement.utils.ConnectionUtil;
+import org.studentmanagement.Entity.Student;
+import org.studentmanagement.Utils.ConnectionUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,10 +24,6 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-/**
- *
- * @author oXCToo
- */
 public class LoginController implements Initializable {
 
     @FXML
@@ -45,41 +36,41 @@ public class LoginController implements Initializable {
     private TextField txtPassword;
 
     @FXML
-    private Button btnSignin;
+    private Button btnSignIn;
 
-    /// -- 
     Connection con;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
+    private void changeScene(MouseEvent event, String fxml){
+        try {
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.close();
+            Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxml))));
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
     @FXML
     public void handleButtonAction(MouseEvent event) {
-
-        if (event.getSource() == btnSignin) {
-            //login here
+        if (event.getSource() == btnSignIn) {
             if (logIn().equals("student")) {
-                try {
-
-                    //add you loading or delays - ;-)
-                    Node node = (Node) event.getSource();
-                    Stage stage = (Stage) node.getScene().getWindow();
-                    //stage.setMaximized(true);
-                    stage.close();
-                    Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("StudentHome.fxml"))));
-                    stage.setScene(scene);
-                    stage.show();
-
-                } catch (IOException ex) {
-                    System.err.println(ex.getMessage());
-                }
-
+                changeScene(event, "StudentHome.fxml");
+            }
+            else if(logIn().equals("professor")){
+                changeScene(event, "ProfessorHome.fxml");
             }
         }
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         if (con == null) {
             lblErrors.setTextFill(Color.TOMATO);
             lblErrors.setText("Server Error : Check");
@@ -143,6 +134,37 @@ public class LoginController implements Initializable {
                             status = "Exception";
                         }
                     }
+                    else if(resultSet.getString("userRole").equals("professor")){
+                        String sql2 = "SELECT * FROM professor Where professor.userID = ?;";
+                        try{
+                            preparedStatement = con.prepareStatement(sql2);
+                            preparedStatement.setString(1, resultSet.getString("userID"));
+                            resultSet = preparedStatement.executeQuery();
+                            if(!resultSet.next()){
+                                setLblError(Color.TOMATO, "Enter Correct Email/Password");
+                                status = "Error";
+                            }
+                            else{
+                                status = "professor";
+                                org.studentmanagement.Entity.Professor professor = org.studentmanagement.Entity.Professor.getInstance();
+                                professor.setProfessorID(resultSet.getString("professorID"));
+                                professor.setProfessorFirstName(resultSet.getString("professorFirstName"));
+                                professor.setProfessorLastName(resultSet.getString("professorLastName"));
+                                professor.setProfessorDOB(resultSet.getString("professorDOB"));
+                                professor.setProfessorGender(resultSet.getString("professorGender"));
+                                professor.setProfessorAddress(resultSet.getString("professorAddress"));
+                                professor.setProfessorPhone(resultSet.getString("professorPhone"));
+                                professor.setProfessorEmail(resultSet.getString("professorEmail"));
+                                professor.setProfessorDepartment(resultSet.getString("professorDepartment"));
+                            }
+                        }
+                        catch (SQLException ex) {
+                            System.err.println(ex.getMessage());
+                            status = "Exception";
+                        }
+
+                    }
+
                 }
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());

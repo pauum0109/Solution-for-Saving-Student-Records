@@ -1,4 +1,4 @@
-package org.studentmanagement;
+package org.studentmanagement.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class StudentController implements Initializable {
+public class StudentHomeController implements Initializable {
 
     @FXML
     private Button btn_info;
@@ -34,25 +34,17 @@ public class StudentController implements Initializable {
     @FXML
     private Button btnClasses;
 
-    //my bad - the freaking mouse event
     @FXML
     private void handleButtonClicks(javafx.event.ActionEvent mouseEvent) {
-        System.out.println("Button Clicked");
-
         if (mouseEvent.getSource() == btn_info) {
             loadStage("StudentInfo.fxml");
         } else if (mouseEvent.getSource() == btn_Course) {
-            loadStage("StudentsCourses.fxml");
+            loadStage("StudentCourse.fxml");
         } else if (mouseEvent.getSource() == btn_Class) {
-            loadStage("StudentsClass.fxml");
-        }
-        if(mouseEvent.getSource() == btn_Tuition){
-            System.out.println("Tuition");
+            loadStage("StudentClass.fxml");
+        } else if(mouseEvent.getSource() == btn_Tuition){
             loadStage("StudentTuition.fxml");
-        }
-
-        if(mouseEvent.getSource() == btn_scholarship){
-            System.out.println("Scholarship");
+        } else if(mouseEvent.getSource() == btn_scholarship){
             loadStage("StudentScholarship.fxml");
         }
     }
@@ -71,7 +63,7 @@ public class StudentController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

@@ -1,4 +1,4 @@
-package org.studentmanagement;
+package org.studentmanagement.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,8 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.studentmanagement.models.Student;
-import org.studentmanagement.utils.ConnectionUtil;
+import org.studentmanagement.Entity.Student;
+import org.studentmanagement.Model.TuitionModel;
+import org.studentmanagement.Utils.ConnectionUtil;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -72,13 +73,13 @@ public class StudentTuitionController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getTuitionData();
-        tuitionID.setCellValueFactory(cellData -> cellData.getValue().tuitionIDProperty().asObject());
-        tuitionAmount.setCellValueFactory(cellData -> cellData.getValue().tuitionAmountProperty().asObject());
-        tuitionDeadline.setCellValueFactory(cellData -> cellData.getValue().tuitionDeadlineProperty());
-        tuitionStatus.setCellValueFactory(cellData -> cellData.getValue().tuitionStatusProperty());
-        tuitionSemester.setCellValueFactory(cellData -> cellData.getValue().tuitionSemesterProperty().asObject());
+        tuitionID.setCellValueFactory(cellData -> cellData.getValue().getTuitionID().asObject());
+        tuitionAmount.setCellValueFactory(cellData -> cellData.getValue().getTuitionAmount().asObject());
+        tuitionDeadline.setCellValueFactory(cellData -> cellData.getValue().getTuitionDeadline());
+        tuitionStatus.setCellValueFactory(cellData -> cellData.getValue().getTuitionStatus());
+        tuitionSemester.setCellValueFactory(cellData -> cellData.getValue().getTuitionSemester().asObject());
         tuitionData.setItems(tuitionModels);
     }
 
-    private ObservableList<TuitionModel> tuitionModels = FXCollections.observableArrayList();
+    private final ObservableList<TuitionModel> tuitionModels = FXCollections.observableArrayList();
 }
