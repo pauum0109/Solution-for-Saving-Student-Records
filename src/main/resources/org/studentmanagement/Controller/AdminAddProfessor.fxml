@@ -32,13 +32,15 @@
                     </font>
                 </Label>
                 <TextField fx:id="txtFirstname" layoutX="75.0" layoutY="159.0" prefHeight="32.0" prefWidth="278.0" promptText="First name" />
-                <TextField fx:id="txtLastname" layoutX="75.0" layoutY="217.0" prefHeight="32.0" prefWidth="278.0" promptText="Last name" />
-                <TextField fx:id="txtEmail" layoutX="75.0" layoutY="276.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" />
-                <DatePicker fx:id="txtDOB" layoutX="75.0" layoutY="390.0" prefHeight="32.0" prefWidth="278.0" promptText="Date of birth" />
+                <TextField fx:id="txtLastname" layoutX="75.0" layoutY="199.0" prefHeight="32.0" prefWidth="278.0" promptText="Last name" />
+                <TextField fx:id="txtEmail" layoutX="75.0" layoutY="239.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" />
+                <DatePicker fx:id="txtDOB" layoutX="75.0" layoutY="359.0" prefHeight="32.0" prefWidth="278.0" promptText="Date of birth" />
                 <Button fx:id="btnSave" layoutX="75.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="32.0" prefWidth="278.0" styleClass="button2" stylesheets="@../styling/LoginCSS/fullpackstyling.css" text="Add" />
-                <ComboBox fx:id="txtGender" editable="true" layoutX="76.0" layoutY="334.0" prefHeight="32.0" prefWidth="278.0" promptText="Gender">
+                <ComboBox fx:id="txtGender" editable="true" layoutX="75.0" layoutY="399.0" prefHeight="32.0" prefWidth="278.0" promptText="Gender">
                 </ComboBox>
-            <TextField fx:id="txtDepartment" layoutX="75.0" layoutY="443.0" prefHeight="32.0" prefWidth="278.0" promptText="Department" />
+            <TextField fx:id="txtDepartment" layoutX="75.0" layoutY="439.0" prefHeight="32.0" prefWidth="278.0" promptText="Department" />
+            <TextField fx:id="txtPhone" layoutX="75.0" layoutY="279.0" prefHeight="32.0" prefWidth="278.0" promptText="Phone" />
+            <TextField fx:id="txtAddress" layoutX="75.0" layoutY="319.0" prefHeight="32.0" prefWidth="278.0" promptText="Address" />
             </children>
         </Pane>
         <TableView fx:id="tblData" layoutX="436.0" layoutY="38.0" prefHeight="488.0" prefWidth="651.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="436.0" AnchorPane.rightAnchor="14.400000000000091" AnchorPane.topAnchor="38.0">

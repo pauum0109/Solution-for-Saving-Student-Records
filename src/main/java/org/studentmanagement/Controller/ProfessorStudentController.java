@@ -234,6 +234,8 @@ public class ProfessorStudentController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.setOnHidden(e -> editTable());
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

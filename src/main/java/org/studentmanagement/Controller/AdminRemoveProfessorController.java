@@ -44,18 +44,66 @@ public class AdminRemoveProfessorController implements Initializable {
         txtProfessorID.clear();
     }
 
-    private void removeProfessor(){
-        String sql = "DELETE FROM professor WHERE professorID = ?";
+    private String findUserID(String professorID){
+        String sql = "SELECT userID FROM professor WHERE professorID = ?";
+        String userID = "";
         try{
             preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setString(1, txtProfessorID.getText());
+            preparedStatement.setString(1, professorID);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                userID = resultSet.getString("userID");
+            }
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return userID;
+    }
+
+
+    private void removeProfessor(){
+        String professorID = txtProfessorID.getText();
+        String userID = findUserID(professorID);
+        String sql = "DELETE a FROM enrollment a INNER JOIN class b ON a.classID = b.classID WHERE b.professorID = ?";
+        try{
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, professorID);
             preparedStatement.executeUpdate();
+
+            sql = "DELETE FROM class WHERE professorID = ?";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, professorID);
+            preparedStatement.executeUpdate();
+
+            sql = "DELETE FROM professor WHERE professorID = ?";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, professorID);
+            preparedStatement.executeUpdate();
+
+            sql = "DELETE FROM user WHERE userID = ?";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, userID);
+            preparedStatement.executeUpdate();
+
             fetRowList();
             ClearField();
         }
         catch (SQLException e){
             throw new RuntimeException(e);
         }
+
+//        String sql = "DELETE FROM professor WHERE professorID = ?";
+//        try{
+//            preparedStatement = con.prepareStatement(sql);
+//            preparedStatement.setString(1, txtProfessorID.getText());
+//            preparedStatement.executeUpdate();
+//            fetRowList();
+//            ClearField();
+//        }
+//        catch (SQLException e){
+//            throw new RuntimeException(e);
+//        }
     }
 
     @FXML

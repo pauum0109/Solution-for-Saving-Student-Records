@@ -44,6 +44,13 @@ public class AdminAddProfessorController implements Initializable {
     @FXML
     private TextField txtLastname;
 
+    @FXML
+    private TextField txtAddress;
+
+    @FXML
+    private TextField txtPhone;
+
+
     Connection con;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
@@ -95,9 +102,9 @@ public class AdminAddProfessorController implements Initializable {
         }
     }
 
-    private void insertProfessorRecord(){
+    private void insertProfessorRecord(String userID){
         int id = getMaxProfessorId() + 1;
-        String sql = "INSERT INTO professor (professorID, professorFirstname, professorLastname, professorGender, professorDOB, professorEmail, professorDepartment) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO professor (professorID, professorFirstname, professorLastname, professorGender, professorDOB, professorEmail, professorDepartment, professorAddress, professorPhone, userID) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try{
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -107,34 +114,43 @@ public class AdminAddProfessorController implements Initializable {
             preparedStatement.setString(5, txtDOB.getValue().toString());
             preparedStatement.setString(6, txtEmail.getText());
             preparedStatement.setString(7, txtDepartment.getText());
+            preparedStatement.setString(8, txtAddress.getText());
+            preparedStatement.setString(9, txtPhone.getText());
+            preparedStatement.setString(10, userID);
             preparedStatement.executeUpdate();
+
+            fetRowList();
+            ClearField();
         }
         catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
 
-    private void insertUserRecord(){
+    private String insertUserRecord(){
         int id = getMaxUserId() + 1;
-        String sql = "INSERT INTO user (userID, username, password, role) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO user (userID, username, userPassword, userRole, userEmail) VALUES (?,?,?,?,?)";
         try{
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, txtEmail.getText());
             preparedStatement.setString(3, "123456");
             preparedStatement.setString(4, "professor");
+            preparedStatement.setString(5, txtEmail.getText());
             preparedStatement.executeUpdate();
+
         }
         catch (SQLException e){
             throw new RuntimeException(e);
         }
+        return String.valueOf(id);
     }
 
     @FXML
     void handleAddButton(ActionEvent event) {
         if(event.getSource() == btnSave){
-            insertProfessorRecord();
-            insertUserRecord();
+            insertProfessorRecord(insertUserRecord());
+
             fetRowList();
             ClearField();
         }

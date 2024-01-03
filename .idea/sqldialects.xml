@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/org/studentmanagement/Controller/AdminAddCourseController.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/studentmanagement/Controller/AdminAddProfessorController.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/studentmanagement/Controller/AdminAddStudentController.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/studentmanagement/Controller/AdminRemoveProfessorController.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/studentmanagement/Controller/AdminRemoveStudentController.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/studentmanagement/Controller/EditScoreController.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/studentmanagement/Controller/LoginController.java" dialect="GenericSQL" />

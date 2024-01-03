@@ -31,14 +31,16 @@
                         <Font name="Segoe UI" size="12.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtFirstname" layoutX="75.0" layoutY="159.0" prefHeight="32.0" prefWidth="278.0" promptText="First name" />
-                <TextField fx:id="txtLastname" layoutX="75.0" layoutY="217.0" prefHeight="32.0" prefWidth="278.0" promptText="Last name" />
-                <TextField fx:id="txtEmail" layoutX="75.0" layoutY="276.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" />
-                <DatePicker fx:id="txtDOB" layoutX="75.0" layoutY="390.0" prefHeight="32.0" prefWidth="278.0" promptText="Date of birth" />
+                <TextField fx:id="txtFirstname" layoutX="76.0" layoutY="151.0" prefHeight="32.0" prefWidth="278.0" promptText="First name" />
+                <TextField fx:id="txtLastname" layoutX="76.0" layoutY="191.0" prefHeight="32.0" prefWidth="278.0" promptText="Last name" />
+                <TextField fx:id="txtEmail" layoutX="76.0" layoutY="231.0" prefHeight="32.0" prefWidth="278.0" promptText="Email" />
+                <DatePicker fx:id="txtDOB" layoutX="76.0" layoutY="351.0" prefHeight="32.0" prefWidth="278.0" promptText="Date of birth" />
                 <Button fx:id="btnSave" layoutX="75.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="32.0" prefWidth="278.0" styleClass="button2" stylesheets="@../styling/LoginCSS/fullpackstyling.css" text="Add" />
-                <ComboBox fx:id="txtGender" editable="true" layoutX="76.0" layoutY="334.0" prefHeight="32.0" prefWidth="278.0" promptText="Gender">
+                <ComboBox fx:id="txtGender" editable="true" layoutX="76.0" layoutY="391.0" prefHeight="32.0" prefWidth="278.0" promptText="Gender">
                 </ComboBox>
-            <TextField fx:id="txtMajor" layoutX="75.0" layoutY="443.0" prefHeight="32.0" prefWidth="278.0" promptText="Major" />
+            <TextField fx:id="txtMajor" layoutX="76.0" layoutY="431.0" prefHeight="32.0" prefWidth="278.0" promptText="Major" />
+            <TextField fx:id="txtPhone" layoutX="76.0" layoutY="271.0" prefHeight="32.0" prefWidth="278.0" promptText="Phone" />
+            <TextField fx:id="txtAddress" layoutX="76.0" layoutY="311.0" prefHeight="32.0" prefWidth="278.0" promptText="Address" />
             </children>
         </Pane>
         <TableView fx:id="tblData" layoutX="436.0" layoutY="38.0" prefHeight="488.0" prefWidth="651.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="436.0" AnchorPane.rightAnchor="14.400000000000091" AnchorPane.topAnchor="38.0">

@@ -80,18 +80,22 @@ public class AdminAddCourseController implements Initializable {
     }
 
     private void insertCourse(){
-        String sql = "INSERT INTO course (courseID, courseName, courseDescription, courseCredit, courseDay, courseTime, courseRoom) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try{
+        int max = getMaxCourseId()+1;
+        String sql = "INSERT INTO course (courseID, courseName, courseDescription, courseCredit, courseDay, courseTime, courseRoom) VALUES (?,?,?,?,?,?,?)";
+        try {
             preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, getMaxCourseId() + 1);
+
+            preparedStatement.setInt(1, max);
             preparedStatement.setString(2, txtCourseName.getText());
             preparedStatement.setString(3, txtCourseDescription.getText());
-            preparedStatement.setInt(4, Integer.parseInt(txtCourseCredit.getText()));
+            preparedStatement.setString(4, txtCourseCredit.getText());
             preparedStatement.setString(5, txtCourseDay.getText());
             preparedStatement.setString(6, txtCourseTime.getText());
             preparedStatement.setString(7, txtCourseRoom.getText());
             preparedStatement.execute();
-        }catch (Exception e){
+
+        }
+        catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
