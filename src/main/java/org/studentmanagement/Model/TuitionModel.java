@@ -24,4 +24,24 @@ public class TuitionModel {
         this.tuitionSemester = new SimpleIntegerProperty(tuitionSemester);
     }
 
+    public SimpleIntegerProperty getTuitionID() {
+        return tuitionID;
+    }
+
+    public SimpleIntegerProperty getTuitionAmount() {
+        return tuitionAmount;
+    }
+
+    public SimpleIntegerProperty getTuitionSemester() {
+        return tuitionSemester;
+    }
+
+    public SimpleStringProperty getTuitionStatus() {
+        return tuitionStatus;
+    }
+
+    public SimpleStringProperty getTuitionDeadline() {
+        return tuitionDeadline;
+    }
+
 }

@@ -30,5 +30,33 @@ public class CourseModel {
         this.courseRoom = new SimpleStringProperty(courseRoom);
     }
 
+    public SimpleIntegerProperty getCourseID() {
+        return courseID;
+    }
+
+    public SimpleStringProperty getCourseName() {
+        return courseName;
+    }
+
+    public SimpleStringProperty getCourseDescription() {
+        return courseDescription;
+    }
+
+    public SimpleStringProperty getCourseCredit() {
+        return courseCredit;
+    }
+
+    public SimpleStringProperty getCourseDay() {
+        return courseDay;
+    }
+
+    public SimpleStringProperty getCourseTime() {
+        return courseTime;
+    }
+
+    public SimpleStringProperty getCourseRoom() {
+        return courseRoom;
+    }
+
 
 }

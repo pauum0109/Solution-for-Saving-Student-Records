@@ -4,7 +4,9 @@ services:
     image: mysql:8.0.20
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 123456789
-      MYSQL_DATABASE: studentmanagement
+      MYSQL_ROOT_PASSWORD: "@AdminSQL123"
+      MYSQL_DATABASE: "StudentManagement"
     ports:
       - "3307:3306"
+# docker compose up -d
+# docker exec -i solution-for-saving-student-records-db-1 mysql -u root -p @AdminSQL123 studentmanagement < D:/Code/Solution-for-Saving-Student-Records/src/main/resources/org/studentmanagement/Data/data.sql

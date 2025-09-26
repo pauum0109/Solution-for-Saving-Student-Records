@@ -20,4 +20,36 @@ public class Score {
         }
         return instance;
     }
+
+    public int getStudentID() {
+        return studentID;
+    }
+
+    public int getClassID() {
+        return classID;
+    }
+
+    public int getStudentScore() {
+        return studentScore;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentID(Integer value) {
+        this.studentID = value;
+    }
+
+    public void setStudentName(String value) {
+        this.studentName = value;
+    }
+
+    public void setStudentScore(Integer value) {
+        this.studentScore = value;
+    }
+
+    public void setClassID(int finalClassID) {
+        this.studentID = finalClassID;
+    }
 }

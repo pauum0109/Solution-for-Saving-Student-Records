@@ -18,4 +18,16 @@ public class StudentScoreModel {
         this.studentName = new SimpleStringProperty(studentName);
         this.studentScore = new SimpleIntegerProperty(studentScore);
     }
+
+    public SimpleIntegerProperty getStudentID() {
+        return studentID;
+    }
+
+    public SimpleStringProperty getStudentName() {
+        return studentName;
+    }
+
+    public SimpleIntegerProperty getStudentScore() {
+        return studentScore;
+    }
 }

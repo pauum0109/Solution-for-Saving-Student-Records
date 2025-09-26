@@ -19,4 +19,16 @@ public class ScholarshipModel {
         this.scholarshipDescription = new SimpleStringProperty(scholarshipDescription);
     }
 
+    public SimpleIntegerProperty getScholarshipId() {
+        return scholarshipId;
+    }
+
+    public SimpleStringProperty getScholarshipName() {
+        return scholarshipName;
+    }
+
+    public SimpleStringProperty getScholarshipDescription() {
+        return scholarshipDescription;
+    }
+
 }

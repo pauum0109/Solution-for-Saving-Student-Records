@@ -30,4 +30,32 @@ public class ClassModel {
         this.availableSlots = new SimpleIntegerProperty(availableSlots);
     }
 
+    public SimpleIntegerProperty getClassID() {
+        return classID;
+    }
+
+    public SimpleStringProperty getCourseName() {
+        return courseName; 
+    }
+
+    public SimpleStringProperty getProfessorName() {
+        return professorName;
+    }
+
+    public SimpleIntegerProperty getAvailableSlots() {
+        return availableSlots;
+    }
+
+    public SimpleIntegerProperty getSlots() {
+        return slots;
+    }
+
+    public SimpleStringProperty getEndDate() {
+        return endDate;
+    }
+
+    public SimpleStringProperty getStartDate() {
+        return startDate;
+    }
+
 }

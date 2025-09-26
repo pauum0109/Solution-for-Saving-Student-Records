@@ -27,4 +27,44 @@ public class Professor {
         }
         return instance;
     }
+
+    public void setProfessorFirstName(String string) {
+        this.professorFirstName  = string;
+    }
+
+    public void setProfessorDOB(String string) {
+        this.professorDOB  = string;
+    }
+
+    public void setProfessorDepartment(String string) {
+        this.professorDepartment  = string;
+    }
+
+    public void setProfessorEmail(String string) {
+        this.professorEmail  = string;
+    }
+
+    public void setProfessorPhone(String string) {
+        this.professorPhone  = string;
+    }
+
+    public void setProfessorAddress(String string) {
+        this.professorAddress  = string;
+    }
+
+    public void setProfessorGender(String string) {
+        this.professorGender  = string;
+    }
+
+    public void setProfessorLastName(String string) {
+        this.professorLastName  = string;
+    }
+
+    public void setProfessorID(String string) {
+        this.professorID  = string;
+    }
+
+    public String getProfessorID() {
+        return professorID;
+    }
 }
